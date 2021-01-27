@@ -2,8 +2,13 @@ import pygame as pg
 
 try:
     size, n = map(int, input().split())
-    step = int(str(size // n))
-
+    if size % n:
+        size //= 0
+    else:
+        step = size // n
+    #так как мне надо, чтобы вылезала ошибка, если длина грани не
+    #кратна количетсву квадратов, то я просто создаю эту ошибку
+    #просто у меня не получилось без if проверять
 
     pg.init()
     window = pg.display.set_mode((size, size), pg.SHOWN)
