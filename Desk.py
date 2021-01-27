@@ -16,44 +16,18 @@ try:
                 exit()
 
 
-       
-        if n % 2:
-            countX = 1
-            for x in range(0, size, step):
-                countY = 1
-                for y in range(0, size, step):
-                    if countX % 2:
-                        if countY % 2:
-                            pg.draw.rect(window, (0, 0, 0), (x, y, step, step), 0)
-                        else:
-                            pg.draw.rect(window, (255, 255, 255), (x, y, step, step), 0)
-                    else:
-                        if not countY % 2:
-                            pg.draw.rect(window, (0, 0, 0), (x, y, step, step), 0)
-                        else:
-                            pg.draw.rect(window, (255, 255, 255), (x, y, step, step), 0)
-                    countY += 1
-                countX += 1
-        else:
-            countX = 1
-            for x in range(0, size, step):
-                countY = 1
-                for y in range(0, size, step):
-                    if countX % 2:
-                        if not countY % 2:
-                            pg.draw.rect(window, (0, 0, 0), (x, y, step, step), 0)
-                        else:
-                            pg.draw.rect(window, (255, 255, 255), (x, y, step, step), 0)
-                    else:
-                        if countY % 2:
-                            pg.draw.rect(window, (0, 0, 0), (x, y, step, step), 0)
-                        else:
-                            pg.draw.rect(window, (255, 255, 255), (x, y, step, step), 0)
-                    countY += 1
-                countX += 1
         
+        main_x, main_y = 0, size - step
+        for i in range(n):
+            for x in range(main_x, size, 2 * step):
+                pg.draw.rect(window, (0, 0, 0), (x, main_y, step, step), 0)
+            for y in range(main_y, -1, -2 * step):
+                pg.draw.rect(window, (0, 0, 0), (main_x, y, step, step), 0)
+            main_x += step
+            main_y -= step               
+            
 
         pg.display.update()
         pg.time.delay(10)
 except:
-    print("Unsupported input format")
+   print("Unsupported input format")
